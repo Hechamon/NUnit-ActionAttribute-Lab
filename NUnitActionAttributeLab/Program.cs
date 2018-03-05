@@ -1,4 +1,5 @@
 ﻿using System;
+using Repository;
 
 namespace NUnitActionAttributeLab
 {
@@ -6,7 +7,11 @@ namespace NUnitActionAttributeLab
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var webService = new SpaceXDb();
+            webService.Initialize();
+            var someService = new SomeService(webService);
+            Console.WriteLine($"Most amount of stages: {someService.GetMostAmountOfStages()}");
+            Console.ReadKey();
         }
     }
 }
